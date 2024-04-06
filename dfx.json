@@ -1,0 +1,30 @@
+{
+  "canisters": {
+    "ic_dapp_backend": {
+      "build": "npx azle ic_dapp_backend",
+      "candid": "src/ic_dapp_backend/ic_dapp_backend.did",
+      "gzip": true,
+      "main": "src/ic_dapp_backend/src/index.ts",
+      "type": "custom",
+      "wasm": ".azle/ic_dapp_backend/ic_dapp_backend.wasm"
+    },
+    "ic_dapp_frontend": {
+      "dependencies": [
+        "ic_dapp_backend"
+      ],
+      "source": [
+        "src/ic_dapp_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "ic_dapp_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
