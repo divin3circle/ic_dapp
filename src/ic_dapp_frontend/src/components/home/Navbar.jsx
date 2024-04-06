@@ -1,12 +1,22 @@
+import { signOut } from "@junobuild/core";
 import React from "react";
 import { IoIosFootball } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="flex justify-between mx-4">
       {/* logo */}
-      <Link to="/" className="no-underline">
+      <Link to="/app" className="no-underline">
         <div className="flex justify-center items-center pb-2 cursor-pointer">
           <h1 className="text-red-500">Fantasy🪄</h1>
         </div>
@@ -51,7 +61,10 @@ function Navbar() {
             className="rounded-full mx-4 shadow-lg"
           />
         </div>
-        <button className="rounded-md font-bold text-white px-4 py-2 cursor-pointer border-none bg-red-500 shadow-lg">
+        <button
+          className="rounded-md font-bold text-white px-4 py-2 cursor-pointer border-none bg-red-500 shadow-lg"
+          onClick={handleSignOut}
+        >
           Sign Out
         </button>
       </div>
